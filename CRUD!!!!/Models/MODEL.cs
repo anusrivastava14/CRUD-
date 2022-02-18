@@ -11,9 +11,9 @@ namespace CRUD____.Models
     public class MODEL
     {
         public int ID { get; set; }
-        [Required]
-        [Display(Name ="USER NAME")]
-        [StringLength(20,ErrorMessage ="Name cant not be Exceed")]
+        [Required(ErrorMessage ="*")]
+       // [Display(Name ="USER NAME")]
+      //  [StringLength(20,ErrorMessage ="Name cant not be Exceed")]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Father's NAME")]

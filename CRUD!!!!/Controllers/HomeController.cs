@@ -61,6 +61,7 @@ var list1 = DB.Reach(model,4).ToList();
             return View(model);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ADD(MODEL model,string Command,HttpPostedFileBase ImgInp)
         {
             
@@ -161,6 +162,40 @@ var list1 = DB.Reach(model,4).ToList();
             model.ID = sid;
             var data=DB.Reach(model, 5).ToList();
             return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult loginid()
+        {
+
+            ViewBag.LOGIN = "Login";
+            return View();
+        }
+        public ActionResult loginid(MODEL model, string Command)
+        {
+
+            if (Command == "Login")
+            {
+                procid = 6;
+            }
+            var list = DB.Reach(model, 6).ToList();
+            if(list.Count>0)
+            {
+                Session["Name"] = list[0].Name;
+                Session["MOB"] = list[0].MOB;
+            }
+            else
+            {
+                return RedirectToAction("ADD","Home");
+            }
+            return RedirectToAction("ADD","Home");
+        }
+        public ActionResult session()
+        {
+            if (Session["Name"].ToString() == null)
+            {
+                return RedirectToAction("ADD","Home");
+            }
+          return View()
         }
     }
 }

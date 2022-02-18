@@ -1,0 +1,30 @@
+﻿@model CRUD____.Models.MODEL
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/jquery-3.3.1.min.js"></script>
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <label>Name</label>
+                        @Html.TextBoxFor(m=>m.Name,new { @id="Name",@class="form-control"})
+                    </div>
+                    <div>
+                        <label>Mobile No.</label>
+                        @Html.TextBoxFor(m=>m.MOB,new { @id="MOB",@class="form-control"})
+                    </div>
+                }
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+</main>
+

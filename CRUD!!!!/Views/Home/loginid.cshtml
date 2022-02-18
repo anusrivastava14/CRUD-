@@ -1,0 +1,38 @@
+﻿@model CRUD____.Models.MODEL
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Content/jquery-3.3.1.min.js"></script>
+
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div col-sm-3></div>
+
+            <div col-sm-6>
+
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <label>Name</label>
+                        @Html.TextBoxFor(m => m.Name, new { @id="Name",@class="form-control"})
+                    </div>
+                    <div>
+                        <label>Mobile No.</label>
+                        @Html.TextBoxFor(m => m.MOB, new { @id = "Name", @class = "form-control" })
+                    </div>
+
+
+                    <div>
+
+                        <input type="submit" name="Command" value="@ViewBag.LOGIN" />
+                    </div>
+                }
+            </div>
+            <div col-sm-3></div>
+        </div>
+    </div>
+</main>
+

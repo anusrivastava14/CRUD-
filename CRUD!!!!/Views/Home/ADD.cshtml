@@ -3,7 +3,9 @@
 @{
     Layout = null;
 }
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Content/jquery-3.3.1.min.js"></script>
+
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 
 <script>
@@ -99,110 +101,129 @@
 
 
 </script>
-<main class="app-content" >
-    @using (Html.BeginForm("ADD", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.HiddenFor(m => m.ImagePath, new { @id = "ImagePath" })
-        @Html.HiddenFor(m => m.CityId1, new { @id = "CityId1" })
-
-        @Html.HiddenFor(m => m.ID, new { @id = "ID" })
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            <label>Name</label>
-            @Html.TextBoxFor(m => m.Name, new { @id = "Name", @class = "form-control" })
-           @* @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-        </div>
-        <div>
-            <label>Father's Name</label>
-            @Html.TextBoxFor(m => m.Fname, new { @id = "Fname", @class = "form-control" })
-        </div>
-        <div>
-            <label>Mother's Name</label>
-            @Html.TextBoxFor(m => m.Mname, new { @id = "Mname", @class = "form-control" })
-        </div>
-        <div>
-            <label>Mobile No.</label>
-            @Html.TextBoxFor(m => m.MOB, new { @id = "MOB", @class = "form-control",@onsubmit="mobile()" })
-            <span id="msg"></span>
-        </div>
-        <div>
-            <label>Qualification</label>
-           @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
-            @Html.DropDownListFor(m=>m.Qf,new List<SelectListItem> { new SelectListItem() { Text="-select-",Value="0"},new SelectListItem() { Text="High School",Value="1"},new SelectListItem() { Text="Intermediate",Value="2"},new SelectListItem() { Text="Diploma" ,Value="3"},new SelectListItem() { Text="B.tech" , Value="4"},new SelectListItem() { Text="M.tech",Value="5"} })
-        </div>
-        <div>
-            <label>Gender</label>
-           @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
-            <span>Male :</span>@Html.RadioButtonFor(m=>m.gender,"Male")
-            <span>Female :</span>  @Html.RadioButtonFor(m => m.gender, "Female")
-        </div>
-        <div>
-            <label>State</label>
-           @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
-            @Html.DropDownListFor(m=>m.StateId, (new MODEL2().LC(1)),new {@id= "StateId",@class="form-control",@required="required",@onchange= "city()" })
-        </div>
-        <div>
-            <label>City</label>
-           @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
-            @Html.DropDownListFor(m=>m.CityId, new SelectListItem[] { new SelectListItem { Text="-select-" ,Value="0"} }, new { @id= "CityId",@class="form-control"  })
-        </div>
-        <div>
-            <label>ImagePath</label>
-           @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
-            <input type="file" name="ImgInp" id="ImgInp" value="" />
-        </div>
-
-
-
-        <div>
-
-            <input type="submit" name="Command" value="@ViewBag.ButtonName" onclick="return mobile()" />
-        </div>
-
-    }
-    <table>
-        <thead>
-            <tr>
-                <th>Sr. No.</th>
-                <th>Name</th>
-                <th>Father's Name</th>
-                <th>Mother's Name</th>
-                <th>Mobile No.</th>
-                <th>Qualification</th>
-                <th>Gender</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Image</th>
-                <th>ACTIONS</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{ var s = 0;}
-            @if(ViewBag.list!=null)
+<main  >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm("ADD", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                foreach(var item in ViewBag.list)
-                {
-                    <tr>
-                        <td>@(s=s+1)</td>
-                        <td>@item.Name</td>
-                        <td>@item.Fname</td>
-                        <td>@item.Mname</td>
-                        <td>@item.MOB</td>
-                        <td>@item.Qf</td>
-                        <td>@item.gender</td>
-                        <td>@item.State</td>
-                        <td>@item.City</td>
-                        <td><img src="@item.ImagePath" style="height:50px;width:50px" alt="Alternate Text" /></td>
-                        <td>
-                            <a title="edit" onclick="location.href='@Url.Action("edit","Home",new { id=@item.ID})'" >Edit</a>
-                            <a title="delete" onclick="deletee(@item.ID)">Delete</a>
-                        </td>
-                    </tr>
+                    @Html.HiddenFor(m => m.ImagePath, new { @id = "ImagePath" })
+                    @Html.HiddenFor(m => m.CityId1, new { @id = "CityId1" })
+
+                    @Html.HiddenFor(m => m.ID, new { @id = "ID" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="">
+                        <label>Name </label>
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Name, new { @id = "Name", @class = "form-control" })
+                        @* @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })*@
+
+
+                    </div>
+                    <div>
+                        <label>Father's Name</label>
+
+                        @Html.TextBoxFor(m => m.Fname, new { @id = "Fname", @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Mother's Name</label>
+                        @Html.TextBoxFor(m => m.Mname, new { @id = "Mname", @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Mobile No.</label>
+                        @Html.TextBoxFor(m => m.MOB, new { @id = "MOB", @class = "form-control", @onsubmit = "mobile()" })
+                        <span id="msg" style="color:red"></span>
+                    </div>
+                    <div>
+                        <label>Qualification</label>
+                        @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
+                        @Html.DropDownListFor(m => m.Qf, new List<SelectListItem> { new SelectListItem() { Text = "-select-", Value = "0" }, new SelectListItem() { Text = "High School", Value = "1" }, new SelectListItem() { Text = "Intermediate", Value = "2" }, new SelectListItem() { Text = "Diploma", Value = "3" }, new SelectListItem() { Text = "B.tech", Value = "4" }, new SelectListItem() { Text = "M.tech", Value = "5" } }, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>Gender</label>
+                        @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
+                        <span>Male :</span>@Html.RadioButtonFor(m => m.gender, "Male")
+                        <span>Female :</span>  @Html.RadioButtonFor(m => m.gender, "Female")
+                    </div>
+                    <div>
+                        <label>State</label>
+                        @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
+                        @Html.DropDownListFor(m => m.StateId, (new MODEL2().LC(1)), new { @id = "StateId", @class = "form-control", @required = "required", @onchange = "city()" })
+                    </div>
+                    <div>
+                        <label>City</label>
+                        @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
+                        @Html.DropDownListFor(m => m.CityId, new SelectListItem[] { new SelectListItem { Text = "-select-", Value = "0" } }, new { @id = "CityId", @class = "form-control" })
+                    </div>
+                    <div>
+                        <label>ImagePath</label>
+                        @* @Html.TextAreaFor(m => m.Name, new { @id = "Name", @class = "form-control" })*@
+                        <input type="file" name="ImgInp" id="ImgInp" value="" />
+                    </div>
+
+                    <br />
+
+                    <div>
+
+                        <input type="submit" name="Command" value="@ViewBag.ButtonName" onclick="return mobile()" />
+                    </div>
+
                 }
-            }
-        </tbody>
-    </table>
+
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row" style="min-height:60px"></div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <table class="table table-responsive table-bordered table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Name</th>
+                            <th>Father's Name</th>
+                            <th>Mother's Name</th>
+                            <th>Mobile No.</th>
+                            <th>Qualification</th>
+                            <th>Gender</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Image</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var s = 0;}
+                        @if (ViewBag.list != null)
+                        {
+                            foreach (var item in ViewBag.list)
+                            {
+                                <tr>
+                                    <td>@(s = s + 1)</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Fname</td>
+                                    <td>@item.Mname</td>
+                                    <td>@item.MOB</td>
+                                    <td>@item.Qf</td>
+                                    <td>@item.gender</td>
+                                    <td>@item.State</td>
+                                    <td>@item.City</td>
+                                    <td><img src="@item.ImagePath" style="height:50px;width:50px" alt="Alternate Text" /></td>
+                                    <td>
+                                        <a title="edit" onclick="location.href='@Url.Action("edit","Home",new { id=@item.ID})'">Edit</a>
+                                        <a title="delete" onclick="deletee(@item.ID)">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
 </main>
 
