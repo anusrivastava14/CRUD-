@@ -274,6 +274,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\ADD.cshtml" />
     <Content Include="Views\Home\loginid.cshtml" />
+    <Content Include="Views\Home\session.cshtml" />
+    <Content Include="Views\Home\rdt1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,19 +11,21 @@ namespace CRUD____.Models
     public class MODEL
     {
         public int ID { get; set; }
-        [Required(ErrorMessage ="*")]
-       // [Display(Name ="USER NAME")]
-      //  [StringLength(20,ErrorMessage ="Name cant not be Exceed")]
+        [Required(ErrorMessage = "*")]
+        [Display(Name = "USER NAME")]
+        [StringLength(20, ErrorMessage = "Name cant not be Exceed")]
         public string Name { get; set; }
-        [Required]
-        [Display(Name = "Father's NAME")]
-        [StringLength(25, ErrorMessage = "Name cant not be Exceed")]
+        //[Required]
+        //[Display(Name = "Father's NAME")]
+        //[StringLength(25, ErrorMessage = "Name cant not be Exceed")]
         public string Fname { get; set; }
         [Required]
         [Display(Name = "Mother's NAME")]
         [StringLength(25, ErrorMessage = "Name cant not be Exceed")]
         public string Mname { get; set; }
-
+        public string rdt { get; set; }
+        public string fdt { get; set; }
+        public string tdt { get; set; }
         public string MOB { get; set; }
         public string Qf { get; set; }
         public string msg { get; set; }

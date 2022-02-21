@@ -5,6 +5,12 @@
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Content/jquery-3.3.1.min.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+@*<script src="~/Scripts/jquery.validate.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
 
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 
@@ -70,7 +76,7 @@
 <script>
     function mobile() {
         var a = $("#MOB").val();
-        alert();
+        
         debugger
         if(a==""||a==null)
         {
@@ -117,19 +123,21 @@
                     <div class="">
                         <label>Name </label>
                         @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                        @Html.TextBoxFor(m => m.Name, new { @id = "Name", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Name, new { @id = "Name", @class = "form-control", @autocomplete = "off" })
                         @* @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })*@
 
 
                     </div>
                     <div>
                         <label>Father's Name</label>
-
-                        @Html.TextBoxFor(m => m.Fname, new { @id = "Fname", @class = "form-control" })
+                      @*  @Html.ValidationMessageFor(m => m.Fname, "", new { @class = "text-danger" })*@
+                        @Html.TextBoxFor(m => m.Fname, new { @id = "Fname", @class = "form-control", @autocomplete="off" })
                     </div>
                     <div>
                         <label>Mother's Name</label>
-                        @Html.TextBoxFor(m => m.Mname, new { @id = "Mname", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Mname, "", new { @class = "text-danger" })
+
+                        @Html.TextBoxFor(m => m.Mname, new { @id = "Mname", @class = "form-control" , @autocomplete ="off"})
                     </div>
                     <div>
                         <label>Mobile No.</label>

@@ -25,9 +25,11 @@ namespace CRUD____.DAL
                 new SqlParameter {ParameterName="@Gender",Value=model.gender??string.Empty },
                 new SqlParameter {ParameterName="@cityid",Value=model.CityId==null?0:model.CityId },
                 new SqlParameter {ParameterName="@stateid",Value=model.StateId==null?0:model.StateId },
+                new SqlParameter {ParameterName="@fromdate",Value=model.fdt??string.Empty},
+                new SqlParameter {ParameterName="@todate",Value=model.tdt??string.Empty},
                 new SqlParameter {ParameterName="@procid",Value=procid }
                 };
-            var com = @"SP_STU_REG @ID,@Name,@FatherName,@MotherName,@Mobile,@Qualification,@ImagePath,@Gender,@cityid,@stateid,@procid";
+            var com = @"SP_STU_REG @ID,@Name,@FatherName,@MotherName,@Mobile,@Qualification,@ImagePath,@Gender,@cityid,@stateid,@fromdate,@todate,@procid";
             return this.Database.SqlQuery<MODEL>(com, param);
 
         }

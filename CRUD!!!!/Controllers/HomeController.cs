@@ -64,7 +64,14 @@ var list1 = DB.Reach(model,4).ToList();
         [ValidateInput(false)]
         public ActionResult ADD(MODEL model,string Command,HttpPostedFileBase ImgInp)
         {
-            
+
+
+            if (string.IsNullOrEmpty(model.Fname))
+            {
+                ModelState.AddModelError("Fname", "Enter aa valid name");
+            }
+            if (ModelState.IsValid)
+            {
                 if (ImgInp != null)
                 {
                     string path = "~/Content/Upload";
@@ -100,23 +107,23 @@ var list1 = DB.Reach(model,4).ToList();
                 {
                     model.Qf = "High School";
                 }
-                if(model.Qf == "2")
-            {
-                model.Qf = "Intermediate";
-            }
-            if (model.Qf == "3")
-            {
-                model.Qf = "Diploma";
-            }
-            if (model.Qf == "4")
-            {
-                model.Qf = "B.tech";
-            }
-            if (model.Qf == "5")
-            {
-                model.Qf = "M.tech";
-            }
-            if (Command == "submit")
+                if (model.Qf == "2")
+                {
+                    model.Qf = "Intermediate";
+                }
+                if (model.Qf == "3")
+                {
+                    model.Qf = "Diploma";
+                }
+                if (model.Qf == "4")
+                {
+                    model.Qf = "B.tech";
+                }
+                if (model.Qf == "5")
+                {
+                    model.Qf = "M.tech";
+                }
+                if (Command == "submit")
                 {
                     procid = 1;
                 }
@@ -134,7 +141,7 @@ var list1 = DB.Reach(model,4).ToList();
                 {
                     ViewBag.list = null;
                 }
-            
+            }
             return RedirectToAction("ADD","Home");
         }
 
@@ -182,6 +189,7 @@ var list1 = DB.Reach(model,4).ToList();
             {
                 Session["Name"] = list[0].Name;
                 Session["MOB"] = list[0].MOB;
+                return RedirectToAction("session", "Home");
             }
             else
             {
@@ -191,11 +199,46 @@ var list1 = DB.Reach(model,4).ToList();
         }
         public ActionResult session()
         {
-            if (Session["Name"].ToString() == null)
+            if (Session["Name"]== null)
             {
                 return RedirectToAction("ADD","Home");
             }
-          return View()
+            var a = Session["Name"].ToString();
+            ViewBag.a = a;
+          return View();
+        }
+
+        [HttpGet]
+        public ActionResult rdt1()
+        {
+            MODEL model = new MODEL();
+            ViewBag.buttonname = "date";
+            var list = DB.Reach(model, 7).ToList();
+            if (list.Count > 0)
+            {
+                ViewBag.RDT = list;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult rdt1(MODEL model, string Command)
+        {
+           if(Command== "date")
+            {
+                procid = 7;
+            }
+            var list = DB.Reach(model, 7).ToList();
+            if(list.Count>0)
+            {
+                ViewBag.RDT = list;
+            }
+            else
+            {
+
+                ViewBag.RDT = null;
+            }
+            return View();
         }
     }
 }

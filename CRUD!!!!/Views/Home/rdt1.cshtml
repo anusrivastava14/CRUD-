@@ -1,0 +1,54 @@
+﻿@model CRUD____.Models.MODEL
+@{
+    Layout = null;
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<main>
+    @using (Html.BeginForm())
+    {
+        <div>
+            <label>From Date</label>
+            @Html.TextBoxFor(m=>m.fdt,new { @id="rdt",@class="form-control"})
+        </div>
+        <div>
+            <label>To Date</label>
+            @Html.TextBoxFor(m => m.tdt, new { @id = "rdt", @class = "form-control" })
+        </div>
+        <div>
+            <input type="submit" value="@ViewBag.buttonname" name="Command"  />
+        </div>
+    }
+
+   <table>
+       <thead>
+           <tr>
+               <th>Sr.no.</th>
+               <th>Name</th>
+              <th>Qualification</th>
+               <th>registration date</th>
+           </tr>
+       </thead>
+       <tbody>
+          @{ var s = 0;}
+            @if (ViewBag.RDT != null)
+           {
+               foreach (var item1 in ViewBag.RDT)
+               {
+                   <tr>
+                      <td>@(s=s+1)</td>
+                       <td>@item1.Name</td>
+                       <td>@item1.Qf</td>
+                       <td>@item1.rdt</td>
+                       
+                       
+                      
+                   </tr>
+               }
+           }
+       </tbody>
+   </table>
+
+    
+</main>
