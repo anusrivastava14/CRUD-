@@ -276,6 +276,7 @@
     <Content Include="Views\Home\loginid.cshtml" />
     <Content Include="Views\Home\session.cshtml" />
     <Content Include="Views\Home\rdt1.cshtml" />
+    <Content Include="Views\Home\report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

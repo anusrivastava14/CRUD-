@@ -213,10 +213,12 @@ var list1 = DB.Reach(model,4).ToList();
         {
             MODEL model = new MODEL();
             ViewBag.buttonname = "date";
-            var list = DB.Reach(model, 7).ToList();
+            var list = DB.Reach(model, 4).ToList();
             if (list.Count > 0)
             {
                 ViewBag.RDT = list;
+                //Session["name"] = list[0].Fname;
+                 
             }
             return View();
         }
@@ -237,6 +239,21 @@ var list1 = DB.Reach(model,4).ToList();
             {
 
                 ViewBag.RDT = null;
+            }
+            return View();
+        }
+        public ActionResult report()
+        {
+            MODEL model = new MODEL();
+            //ViewBag.session = Session["name"].ToString();
+            var list = DB.Reach(model, 4).ToList();
+            if(list.Count>0)
+            {
+                ViewBag.list = list;
+            }
+            else
+            {
+                ViewBag.list = null; 
             }
             return View();
         }
